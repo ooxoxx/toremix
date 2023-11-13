@@ -1,0 +1,9 @@
+.pending {
+  background: pink;
+  font-style: italic;
+}
+
+.active {
+  background: blue;
+  color: white;
+}
