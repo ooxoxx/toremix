@@ -1,5 +1,4 @@
 import {
-  LinksFunction,
   LoaderFunctionArgs,
   MetaFunction,
   json,
@@ -18,13 +17,9 @@ import {
   useNavigation,
   useSubmit,
 } from "@remix-run/react";
-import appStylesHref from "/app.css?url";
 import { createEmptyContact, getContacts } from "./data";
 import { useEffect, useState } from "react";
-
-export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: appStylesHref },
-];
+import "./app.css";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
@@ -96,7 +91,7 @@ export default function App() {
             {contacts.length ? (
               <ul>
                 {contacts.map((contact) => (
-                  <li>
+                  <li key={contact.id}>
                     <NavLink
                       to={`/contacts/${contact.id}`}
                       className={({ isActive, isPending }) =>
